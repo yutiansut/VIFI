@@ -1,4 +1,4 @@
-# 协议
+# QUANTAXIS VIFI 可视化协议
 
 ## 类型
 
@@ -23,41 +23,80 @@
 
 - 数据格式
 
-```javascript
-//一个点
-[{
-    type: 'dot',
-    data: [
-        {
-            Date: 20200220,
-            Value: 16.5,
-            Symbol: '\ue616', // \ue616(买) \ue618（卖）
-            Color: 'rgb(240,0,0)',
-            Baseline: 0 // 0 居中 1 上 2 下
-        }
-    ]
-}]
-//多个点
-[{
-    type: 'dot',
-    data: [
-        {
-            Date: 20200220,
-            Value: 16.5,
-            Symbol: '\ue616', // \ue616(买) \ue618（卖）
-            Color: 'rgb(240,0,0)',
-            Baseline: 0 // 0 居中 1 上 2 下
-        },
-        {
-            Date: 20200318,
-            Value: 13.5,
-            Symbol: '\ue618', // \ue616(买) \ue618（卖）
-            Color: 'rgb(240,240,0)',
-            Baseline: 0 // 0 居中 1 上 2 下
-        }
-    ]
-}]
-```
+  ```
+  //一个点
+  [{
+      type: 'dot',
+      data: [
+          {
+              Date: 20200220,
+              Value: 16.5,
+              Symbol: '\ue616', // \ue616(买) \ue618（卖）
+              Color: 'rgb(240,0,0)',
+              Baseline: 0 // 0 居中 1 上 2 下
+          }
+      ]
+  }]
+  //多个点
+  [{
+      type: 'dot',
+      data: [
+          {
+              Date: 20200220,
+              Value: 16.5,
+              Symbol: '\ue616', // \ue616(买) \ue618（卖）
+              Color: 'rgb(240,0,0)',
+              Baseline: 0 // 0 居中 1 上 2 下
+          },
+          {
+              Date: 20200318,
+              Value: 13.5,
+              Symbol: '\ue618', // \ue616(买) \ue618（卖）
+              Color: 'rgb(240,240,0)',
+              Baseline: 0 // 0 居中 1 上 2 下
+          }
+      ]
+  }]
+  ```
+
+### 文字
+
+- 参数说明
+
+  | 参数名称 | 参数说明            | 备注 |
+  | -------- | ------------------- | ---- |
+  | Date     | 日期                | 必填 |
+  | Time     | 时间(分钟K线才有效) | 可选 |
+  | Value    | 数值                | 必填 |
+  | Color    | 颜色                | 必填 |
+  | Text     | 文字                | 必填 |
+  | Font     | 字体风格            | 可选 |
+  
+- 数据格式
+
+  ```javascript
+  //绘制单条文字
+  [
+      {
+          type: 'text',
+          data: [
+              { Date: 20190926, Time: 945, Value: 14.5, Text: '我来试一试', Color: 'rgb(0,255,50)' }
+          ]
+      }
+  ]
+  //绘制多条文字
+  [
+      {
+        type: 'text',
+          data: [
+              { Date: 20190926, Time: 945, Value: 14.5, Text: '我来试一试', Color: 'rgb(0,255,50)' },
+              { Date: 20190905, Time: 1425, Value: 14.15, Text: '俺也来', Font: '50px 微软雅黑' }
+          ]
+      }
+  ]
+  ```
+  
+  
 
 ### 画线
 
@@ -343,6 +382,29 @@
           ]
       }
   ]
+  ```
+  
+
+## 信息地雷
+
+- 参数说明
+
+  | 参数名称    | 参数说明            | 备注 |
+  | ----------- | ------------------- | ---- |
+  | releasedate | 时间                | 必填 |
+  | title       | 信息地雷提示信息    | 必填 |
+  | typeex      | 图标（0：买/1：卖） | 必填 |
+
+- 数据格式
+
+  ```
+  {
+      type:'infoMine',
+      data:[
+          { releasedate: 20200305, title: '20200305扩展类型公告1', typeex: [0] },
+          { releasedate: 20200323, title: '20200323扩展类型公告2', typeex: [1] }
+    ]
+  }
   ```
   
   
