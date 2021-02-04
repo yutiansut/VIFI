@@ -1,4 +1,4 @@
-# VIFI协议
+# QUANTAXIS VIFI 可视化协议
 
 ## 类型
 
